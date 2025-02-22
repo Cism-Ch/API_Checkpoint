@@ -4,17 +4,25 @@ import { Card, Container, Row, Col, Spinner } from "react-bootstrap";
 import axios from "axios";
 
 const UserList = () => {
-  const [users, setUsers] = useState([]);
+  // Initialisation du state avec useState :
+  // 1. listOfUser : tableau vide [] comme valeur initiale
+  // 2. setListOfUser : fonction pour mettre à jour l'état
+  const [listOfUser, setListOfUser] = useState([]);
+  
+  // États additionnels pour gérer le chargement et les erreurs
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // useEffect pour charger les données au montage du composant
   useEffect(() => {
     const fetchUsers = async () => {
       try {
+        // Appel API avec axios
         const { data } = await axios.get(
           "https://jsonplaceholder.typicode.com/users"
         );
-        setUsers(data);
+        // Mise à jour du state avec les données reçues
+        setListOfUser(data);
         setLoading(false);
       } catch (err) {
         setError(err.response?.data?.message || err.message);
@@ -22,9 +30,11 @@ const UserList = () => {
       }
     };
 
+    // Exécution de la fonction de chargement
     fetchUsers();
-  }, []);
+  }, []); // Tableau de dépendances vide = exécution uniquement au montage
 
+  // Affichage pendant le chargement
   if (loading) {
     return (
       <div
@@ -36,6 +46,7 @@ const UserList = () => {
     );
   }
 
+  // Affichage en cas d'erreur
   if (error) {
     return (
       <div className="text-center text-danger">
@@ -44,11 +55,13 @@ const UserList = () => {
     );
   }
 
+  // Rendu principal utilisant les données du state listOfUser
   return (
     <Container className="py-4">
       <h2 className="text-center mb-4">User List</h2>
       <Row xs={1} md={2} lg={3} className="g-4">
-        {users.map((user) => (
+        {/* Mapping sur le state listOfUser pour afficher chaque utilisateur */}
+        {listOfUser.map((user) => (
           <Col key={user.id}>
             <Card className="h-100 shadow-sm">
               <Card.Body>

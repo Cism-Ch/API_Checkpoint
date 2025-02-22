@@ -1,18 +1,29 @@
+/* Style principal du conteneur de l'application */
 .App {
   text-align: center;
 }
 
+/* Style du logo de l'application 
+   - height: définit la hauteur à 40% de la hauteur de la fenêtre
+   - pointer-events: désactive les interactions avec le logo */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
+/* Media query pour l'animation du logo
+   Ne s'applique que si l'utilisateur n'a pas activé l'option de réduction des animations */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
+/* Style de l'en-tête de l'application
+   - Utilise flexbox pour centrer le contenu
+   - Couleur de fond sombre
+   - Texte blanc
+   - Occupe toute la hauteur de la fenêtre */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,10 +35,15 @@
   color: white;
 }
 
+/* Style des liens dans l'application 
+   Utilise la couleur bleue caractéristique de React */
 .App-link {
   color: #61dafb;
 }
 
+/* Définition de l'animation de rotation du logo
+   - Rotation complète de 360 degrés
+   - Animation fluide de 0 à 360 degrés */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
