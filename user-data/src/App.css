@@ -1,18 +1,28 @@
-/* Style principal du conteneur de l'application */
+/**
+ * Styles globaux de l'application
+ * Définit les styles de base et les animations du logo
+ */
+
+/* Style principal du conteneur de l'application
+ * Centre le contenu de manière horizontale
+ */
 .App {
   text-align: center;
 }
 
-/* Style du logo de l'application 
-   - height: définit la hauteur à 40% de la hauteur de la fenêtre
-   - pointer-events: désactive les interactions avec le logo */
+/* Style du logo de l'application
+ * - Taille responsive basée sur la hauteur de la fenêtre
+ * - Désactivation des interactions avec le logo
+ */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-/* Media query pour l'animation du logo
-   Ne s'applique que si l'utilisateur n'a pas activé l'option de réduction des animations */
+/* Média query pour l'animation du logo
+ * Ne s'applique que si l'utilisateur n'a pas demandé de réduire les animations
+ * Respecte les préférences d'accessibilité
+ */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -20,10 +30,10 @@
 }
 
 /* Style de l'en-tête de l'application
-   - Utilise flexbox pour centrer le contenu
-   - Couleur de fond sombre
-   - Texte blanc
-   - Occupe toute la hauteur de la fenêtre */
+ * - Utilise Flexbox pour le centrage
+ * - Thème sombre avec fond foncé
+ * - Police de taille responsive
+ */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -35,15 +45,17 @@
   color: white;
 }
 
-/* Style des liens dans l'application 
-   Utilise la couleur bleue caractéristique de React */
+/* Style des liens dans l'application
+ * Utilise la couleur bleue caractéristique de React
+ */
 .App-link {
   color: #61dafb;
 }
 
-/* Définition de l'animation de rotation du logo
-   - Rotation complète de 360 degrés
-   - Animation fluide de 0 à 360 degrés */
+/* Animation de rotation du logo
+ * - Rotation complète sur 360 degrés
+ * - Animation fluide et continue
+ */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

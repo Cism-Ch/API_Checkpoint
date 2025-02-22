@@ -1,19 +1,22 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState, useEffect } from "react";
-import { Card, Container, Row, Col, Spinner } from "react-bootstrap";
-import axios from "axios";
+/**
+ * Composant UserList
+ * Gère l'affichage de la liste des utilisateurs avec animations et effets de hover
+ */
+
+// Importation des dépendances
+import "bootstrap/dist/css/bootstrap.min.css";              // Styles Bootstrap
+import React, { useState, useEffect } from "react";         // Hooks React
+import { Card, Container, Row, Col, Spinner } from "react-bootstrap";  // Composants Bootstrap
+import axios from "axios";                                  // Client HTTP
+import "./UserList.css";                                   // Styles personnalisés
 
 const UserList = () => {
-  // Initialisation du state avec useState :
-  // 1. listOfUser : tableau vide [] comme valeur initiale
-  // 2. setListOfUser : fonction pour mettre à jour l'état
-  const [listOfUser, setListOfUser] = useState([]);
-  
-  // États additionnels pour gérer le chargement et les erreurs
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // Gestion des états avec useState
+  const [listOfUser, setListOfUser] = useState([]);        // Liste des utilisateurs
+  const [loading, setLoading] = useState(true);            // État de chargement
+  const [error, setError] = useState(null);                // Gestion des erreurs
 
-  // useEffect pour charger les données au montage du composant
+  // Effet de bord pour charger les données au montage du composant
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -21,18 +24,18 @@ const UserList = () => {
         const { data } = await axios.get(
           "https://jsonplaceholder.typicode.com/users"
         );
-        // Mise à jour du state avec les données reçues
+        // Mise à jour du state avec les données
         setListOfUser(data);
         setLoading(false);
       } catch (err) {
+        // Gestion des erreurs
         setError(err.response?.data?.message || err.message);
         setLoading(false);
       }
     };
 
-    // Exécution de la fonction de chargement
     fetchUsers();
-  }, []); // Tableau de dépendances vide = exécution uniquement au montage
+  }, []); // Tableau de dépendances vide = exécution unique au montage
 
   // Affichage pendant le chargement
   if (loading) {
@@ -55,21 +58,39 @@ const UserList = () => {
     );
   }
 
-  // Rendu principal utilisant les données du state listOfUser
+  // Rendu principal de la liste des utilisateurs
   return (
     <Container className="py-4">
-      <h2 className="text-center mb-4">User List</h2>
+      {/* Titre avec animation de fondu */}
+      <h2 
+        className="text-center mb-4" 
+        data-aos="fade-down"
+        data-aos-delay="100"
+      >
+        User List
+      </h2>
+      {/* Grille responsive pour les cartes */}
       <Row xs={1} md={2} lg={3} className="g-4">
-        {/* Mapping sur le state listOfUser pour afficher chaque utilisateur */}
-        {listOfUser.map((user) => (
+        {/* Mapping sur la liste des utilisateurs */}
+        {listOfUser.map((user, index) => (
           <Col key={user.id}>
-            <Card className="h-100 shadow-sm">
+            {/* Carte utilisateur avec effets de hover et animations */}
+            <Card 
+              className="h-100 shadow-sm user-card" 
+              data-aos="fade-up"
+              data-aos-delay={150 * (index + 1)}
+            >
               <Card.Body>
-                <Card.Title>{user.name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
+                {/* Titre avec animation */}
+                <Card.Title data-aos="fade-right" data-aos-delay={200 * (index + 1)}>
+                  {user.name}
+                </Card.Title>
+                {/* Sous-titre avec animation */}
+                <Card.Subtitle className="mb-2 text-muted" data-aos="fade-right" data-aos-delay={250 * (index + 1)}>
                   @{user.username}
                 </Card.Subtitle>
-                <Card.Text>
+                {/* Contenu principal avec animation */}
+                <Card.Text data-aos="fade-up" data-aos-delay={300 * (index + 1)}>
                   <strong>Email:</strong> {user.email}
                   <br />
                   <strong>Phone:</strong> {user.phone}
@@ -79,7 +100,12 @@ const UserList = () => {
                   <strong>Company:</strong>{" "}
                   {user.company.name}
                 </Card.Text>
-                <Card.Footer className="bg-transparent border-top-0">
+                {/* Pied de carte avec animation */}
+                <Card.Footer 
+                  className="bg-transparent border-top-0"
+                  data-aos="fade-up"
+                  data-aos-delay={350 * (index + 1)}
+                >
                   <small className="text-muted">
                     {user.address.street},{" "}
                     {user.address.suite}
@@ -97,4 +123,5 @@ const UserList = () => {
   );
 };
 
+// Export du composant
 export default UserList;

@@ -1,18 +1,36 @@
-// Import du composant UserList qui contient la logique de récupération et d'affichage des utilisateurs
-import UserList from './UserList';
+/**
+ * Composant racine de l'application
+ * Gère l'initialisation d'AOS (Animate On Scroll) et la structure principale
+ */
 
-// Composant principal de l'application
-// Il sert de point d'entrée et de conteneur pour les autres composants
+// Importation des dépendances
+import UserList from './UserList';         // Composant principal d'affichage des utilisateurs
+import AOS from 'aos';                     // Bibliothèque d'animations au défilement
+import 'aos/dist/aos.css';                 // Styles CSS pour AOS
+import { useEffect } from 'react';         // Hook React pour les effets de bord
+
+/**
+ * Composant App
+ * Initialise AOS et structure l'application
+ */
 function App() {
+  // Configuration et initialisation d'AOS au montage du composant
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,    // Durée des animations en millisecondes
+      once: true,        // Les animations ne se jouent qu'une seule fois
+      offset: 100        // Décalage en pixels avant le déclenchement
+    });
+  }, []); // Tableau de dépendances vide = exécution uniquement au montage
+
   // Rendu du composant
   return (
-    // Conteneur principal avec la classe CSS "App"
     <div className="App">
-      {/* Intégration du composant UserList qui gère l'affichage de la liste des utilisateurs */}
+      {/* Intégration du composant de liste des utilisateurs */}
       <UserList />
     </div>
   );
 }
 
-// Export du composant App pour pouvoir l'utiliser dans d'autres fichiers
+// Export du composant pour utilisation dans d'autres fichiers
 export default App;
