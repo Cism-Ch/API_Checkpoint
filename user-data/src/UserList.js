@@ -63,7 +63,7 @@ const UserList = () => {
     <Container className="py-4">
       {/* Titre avec animation de fondu */}
       <h2 
-        className="text-center mb-4" 
+        className="text-center mb-4 text-custom" 
         data-aos="fade-down"
         data-aos-delay="100"
       >
@@ -86,7 +86,7 @@ const UserList = () => {
                   {user.name}
                 </Card.Title>
                 {/* Sous-titre avec animation */}
-                <Card.Subtitle className="mb-2 text-muted" data-aos="fade-right" data-aos-delay={250 * (index + 1)}>
+                <Card.Subtitle className="mb-2 text-danger" data-aos="fade-right" data-aos-delay={250 * (index + 1)}>
                   @{user.username}
                 </Card.Subtitle>
                 {/* Contenu principal avec animation */}
@@ -102,11 +102,11 @@ const UserList = () => {
                 </Card.Text>
                 {/* Pied de carte avec animation */}
                 <Card.Footer 
-                  className="bg-transparent border-top-0"
+                  className="bg-dark text-light border-top-3 border-warning"
                   data-aos="fade-up"
                   data-aos-delay={350 * (index + 1)}
                 >
-                  <small className="text-muted">
+                  <small className="text-transparent">
                     {user.address.street},{" "}
                     {user.address.suite}
                     <br />

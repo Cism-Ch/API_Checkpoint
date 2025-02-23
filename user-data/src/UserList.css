@@ -10,6 +10,9 @@
 .user-card {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  border: none;
+  color: white;
+  background: black;
 }
 
 /* Effets au survol de la carte
@@ -19,13 +22,13 @@
  */
 .user-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
-  background-color: rgba(240, 240, 240, 0.9);
+  box-shadow: 0 8px 16px rgba(50, 50, 50, 0.2) !important;
+  background-color: rgba(20, 20, 20, 0.9);
 }
 
 /* Changement de couleur du titre au survol */
 .user-card:hover .card-title {
-  color: #007bff;
+  color: #C6AC79;
 }
 
 /* Animation du contenu de la carte */
@@ -36,4 +39,16 @@
 /* Ajustement du padding au survol pour un effet subtil */
 .user-card:hover .card-body {
   padding-top: 1.5rem;
+}
+
+/* Style personnalisé pour le texte du titre */
+.text-custom {
+  color: #101010;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 2rem 0;
+  padding: 1rem 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 4px solid black;
 }
