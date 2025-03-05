@@ -119,6 +119,12 @@ const UserList = () => {
           </Col>
         ))}
       </Row>
+      {/* Copyright footer */}
+      <div className="mt-5 ">
+        <footer className="text-center mt-5 mb-4 text-muted text-custom-footer">
+          <small>&copy; {new Date().getFullYear()} User List App by Cism-Ch. All rights reserved.</small>
+        </footer>
+      </div>
     </Container>
   );
 };
